@@ -25,10 +25,12 @@ https://www.microsoft.com/en-us/security/blog/2023/04/11/guidance-for-investigat
 
 ### Check for specific Windows Defender Events (tampering with Defender)
   $ Get-EventLog -LogName System -InstanceId 3006
+  
   $ Get-EventLog -LogName System -InstanceId 7023
 
 ### Check for connection to C2 serve via winlogon.exe port 80
   $ netstat -ano | findstr ":80"
+  
   $ tasklist /V | findstr "winlogon.exe"
 #### Use sysmon and add new configuration to the sysmonconfig.xml
   <Image condition="image">winlogon.exe</Image>
