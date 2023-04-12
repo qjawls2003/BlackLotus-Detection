@@ -1,0 +1,12 @@
+mountvol /s
+dir E:\EFI\Microsoft\Boot\*efi
+Get-FileHash -Algorithm MD5 -Path (Get-ChildItem "E:\EFI\Microsoft\Boot\*.*" -Recurse)
+reg query HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity
+Get-EventLog -LogName System -InstanceId 3006
+Get-EventLog -LogName System -InstanceId 7023
+netstat -ano | findstr ":80"
+tasklist /V | findstr "winlogon.exe"
+
+#test new config on sysmon
+./sysmon.exe -accepteula -i sysmonconfig-export.xml
+./sysmon.exe -c sysmonconfig-export.xml
